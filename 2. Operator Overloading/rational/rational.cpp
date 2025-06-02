@@ -1,3 +1,10 @@
+// ----------------------------------------------------------
+// Práctica 1: Clase Rational
+// Fecha: 2 de junio, 2025.
+// Autores:
+//          A01751507 Ángel Adrik Merino Cedeño
+//          A01641754 Eduardo Márquez López
+// ----------------------------------------------------------
 #include <iostream>
 #include <stdexcept>
 #include "rational.h"
@@ -75,4 +82,41 @@ bool Rational::operator != (const Rational& other) const
 std::ostream& operator<<(std::ostream& os, const Rational& r)
 {
     return os << r.to_string();
+}
+
+Rational Rational::operator * (const Rational& other) const
+{
+    int numerator = _numerator * other._numerator;
+    int denominator = _denominator * other._denominator;
+    return Rational (numerator,denominator);
+
+
+}
+Rational Rational::operator ~ () const
+{
+    int numerator = _denominator;
+    int denominator = _numerator;
+    return Rational(numerator,denominator);
+}
+Rational Rational::operator / (const Rational& other) const
+{
+    return (*this) * (~other);
+
+}
+bool Rational::operator < (const Rational& other) const
+{
+    return (_numerator * other._denominator) < (_denominator * other._numerator);
+}
+bool Rational::operator <= (const Rational& other) const
+{
+    return (_numerator * other._denominator) <= (_denominator * other._numerator);
+
+}
+bool Rational::operator > (const Rational& other) const
+{
+    return (_numerator * other._denominator) > (_denominator * other._numerator);
+}
+bool Rational::operator >= (const Rational& other) const
+{
+    return (_numerator * other._denominator) >= (_denominator * other._numerator);
 }
